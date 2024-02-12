@@ -1,7 +1,7 @@
 from random import randint
 
 
-def tworzenie_macierzy(wysokosc, szerokosc): # Tworzenie Tablicy bedącej planszą gry
+def tworzenie_macierzy(wysokosc, szerokosc): # Tworzenie Tablicy bedącą planszą gry
     tablica = []
     for i in range(wysokosc):
         wyraz = []
@@ -65,21 +65,21 @@ if __name__ == '__main__':
     widzialna_tab = tworzenie_macierzy(wysokoscc, szerokoscc)
     menu()
 
-    while True:
+    while True: #głowna pętla programu
         wybor = input('Podaj opcje która chcesz wybrać: ')
         try:
             wybor = int(wybor)
         except ValueError:
             continue
-        if wybor == 1:
+        if wybor == 1: #Rozpoczęcie gry
             print()
             wyswietl(widzialna_tab)
             while strzaly > 0: 
-                while True:
+                while True: #Przyjęcie wartości koordynatów
                     coord_x = input('Podaj koordynat X: ')
                     coord_y = input('Podaj koordynat Y: ')
                     print()
-                    try:
+                    try:    #sprawdzenie czy podane koordynaty istnieją
                         coord_x = int(coord_x) - 1
                         coord_y = int(coord_y) - 1
                     except ValueError:
@@ -88,17 +88,18 @@ if __name__ == '__main__':
                     if coord_x < 0 or coord_y < 0:
                         print('Koordynaty sa zza niskie!')
                         continue
-                    elif coord_x > wysokoscc or coord_y > szerokoscc:
+                    elif coord_x > wysokoscc -1 or coord_y > szerokoscc -1:
                         print('Koordynaty sa zza wysokie!')
                         continue
                     break
-                wynik = strzal(tab, widzialna_tab, strzaly, coord_y, coord_x)
+                wynik = strzal(tab, widzialna_tab, strzaly, coord_y, coord_x) #sprawdzenie trafienia
                 if not wynik:
                     strzaly -= 1
                 else:
                     ilosc_statkow -= 1
+                wyswietl(tab)
                 wyswietl(widzialna_tab)
-                if ilosc_statkow == 0 or strzaly == 0:
+                if ilosc_statkow == 0 or strzaly == 0: #Zakończenie gry
                     if ilosc_statkow == 0:
                         print('Wygrałes! Gratulacje!')
                     else:
@@ -114,9 +115,9 @@ if __name__ == '__main__':
                         wybor = 'new'
                         break
 
-        if wybor == 0:
+        if wybor == 0: #wyłączenie programu 
             exit()
-        elif wybor == 'new':
+        elif wybor == 'new': #ponowienie gry
             strzaly = 5
             ilosc_statkow = 4
             tab = tworzenie_macierzy(wysokoscc, szerokoscc)
