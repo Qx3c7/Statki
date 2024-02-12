@@ -97,7 +97,6 @@ if __name__ == '__main__':
                     strzaly -= 1
                 else:
                     ilosc_statkow -= 1
-                wyswietl(tab)
                 wyswietl(widzialna_tab)
                 if ilosc_statkow == 0 or strzaly == 0: #Zakończenie gry
                     if ilosc_statkow == 0:
